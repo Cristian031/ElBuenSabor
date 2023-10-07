@@ -2,7 +2,10 @@ package com.pesos.demo.entities;
 
 import com.pesos.demo.enumeration.FormaDePago;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -11,7 +14,9 @@ import java.util.Date;
 @Entity
 @Data
 @Table (name = "Factura")
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Factura implements Serializable {
 
 
@@ -31,6 +36,8 @@ public class Factura implements Serializable {
     private Date fechaBaja;
     @Column(name = "Fecha Modificacion")
     private Date fechaModificacion;
+    @Column(name = "Total")
+    private int total;
 
     private Long mp_merchant_order_id;
     private Long mp_payment_id;
@@ -45,9 +52,10 @@ public class Factura implements Serializable {
     @JoinColumn(name = "fk_Cliente")
     private Cliente cliente;
 
+    @OneToOne(mappedBy = "factura")
+    @JoinColumn(name = "pedido_id")
 
+    private Pedido pedido;
 
 
 }
-
-

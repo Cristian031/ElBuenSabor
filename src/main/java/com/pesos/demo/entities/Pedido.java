@@ -1,5 +1,7 @@
 package com.pesos.demo.entities;
 
+import com.pesos.demo.enumeration.EstadoPedido;
+import com.pesos.demo.enumeration.FormaDePago;
 import com.pesos.demo.enumeration.TipoEnvio;
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,7 +9,9 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Pedido")
@@ -24,7 +28,7 @@ public class Pedido  implements Serializable {
     private Long id;
 
     @Column(name = "Estado")
-    private int estado;
+    private EstadoPedido estado;
     @Column(name = "Fecha Alta")
     private Date fechaAlta;
     @Column(name = "Fecha Baja")
@@ -33,15 +37,17 @@ public class Pedido  implements Serializable {
     private Date fechaModificacion;
     @Column(name = "Fecha Pedido")
     private Date fechaPedido;
-    @Enumerated(EnumType.STRING)
-    private int formaPago;
+    @Enumerated(EnumType.STRING )
+    private FormaDePago formaPago;
     @Column(name = "Hora Estimada")
     private Date horaEstimadaFinalizacion;
+    @Column(name = "desc_aplicado")
+    private Double descAplicado;
 
     @Enumerated(EnumType.STRING)
     private TipoEnvio tipoEnvio;
     @Column(name = "Total")
-    private BigDecimal total;
+    private double total;
     @Column(name = "Total Costo")
     private BigDecimal totalCosto;
 
@@ -53,11 +59,21 @@ public class Pedido  implements Serializable {
     @JoinColumn( name = "fk_Domicilio")
     private Domicilio domicilio;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "Pedido_id")
+    @Builder.Default
+    private List<detallePedido> detallePedidos = new ArrayList<detallePedido>();
 
-   /* public void agregarDetallePedido (detallePedido deta){
-        detallePedido.add(deta);
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_Factura")
+    private Factura factura;
+
+    public void agregarDetallePedido (detallePedido deta){
+        detallePedidos.add(deta);
     }
-*/
+
+
+
 
 
 }

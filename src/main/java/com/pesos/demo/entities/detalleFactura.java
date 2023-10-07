@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "Detalle Factura")
+@Table(name = "DetalleFactura")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
-@Table(name = "Articulo Insumo")
+@Table(name = "ArticuloInsumo")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

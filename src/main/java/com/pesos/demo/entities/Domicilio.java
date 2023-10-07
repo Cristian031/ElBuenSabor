@@ -2,7 +2,6 @@ package com.pesos.demo.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.io.Serializable;
 import java.util.Date;
 

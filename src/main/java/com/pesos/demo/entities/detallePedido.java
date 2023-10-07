@@ -1,19 +1,17 @@
 package com.pesos.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
 @Entity
-@Table(name = "Detalle Pedido")
+@Table(name = "DetallePedido")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class detallePedido implements Serializable {
 
     @Id
@@ -38,5 +36,10 @@ public class detallePedido implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "fk_ArticuloInsumo")
     private ArticuloInsumo articuloInsumo;
+
+    public detallePedido(Long id, int cantidad, double subtotal) {
+        this.id = id;
+        this.cantidad = cantidad;
+    }
 
 }

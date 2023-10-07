@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "Unidad Medida")
+@Table(name = "UnidadMedida")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
